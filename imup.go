@@ -2,10 +2,19 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/imroc/req"
 )
+
+func getRandomSecond() int {
+	rand.Seed(time.Now().UnixNano())
+	min := 10
+	max := 60
+
+	return rand.Intn(max-min+1) + min
+}
 
 func fetchPage(name string) bool {
 
@@ -13,7 +22,6 @@ func fetchPage(name string) bool {
 	_, err := req.Get(name)
 
 	if err != nil {
-		//log.Fatal(err)
 		fmt.Println("Reached timeout or error. Your internet is probably down!")
 		return false
 	}

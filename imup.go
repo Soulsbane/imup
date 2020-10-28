@@ -11,7 +11,7 @@ import (
 
 func getRandomSecond() int {
 	rand.Seed(time.Now().UnixNano())
-	min := 30
+	min := 10
 	max := 60
 
 	return rand.Intn(max-min+1) + min

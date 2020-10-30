@@ -19,9 +19,14 @@ func getRandomSecond() int {
 
 func keepFetchingPage(name string) {
 	for {
-		second := getRandomSecond()
-		fetchPage(name)
-		time.Sleep(time.Duration(second) * time.Second)
+		working := fetchPage(name)
+
+		if working {
+			second := getRandomSecond()
+			time.Sleep(time.Duration(second) * time.Second)
+		} else {
+			time.Sleep(3 * time.Second)
+		}
 	}
 }
 
@@ -30,13 +35,14 @@ func fetchPage(name string) bool {
 	req.SetTimeout(5 * time.Second)
 	_, err := req.Get(name)
 
-	// TODO: Add time logging.
 	if err != nil {
-		fmt.Println("Reached timeout or error. Your internet is probably down!")
+		fmt.Print(time.Now())
+		fmt.Println(" - Reached timeout or error. Your internet is probably down!")
 		return false
 	}
 
-	fmt.Println("Your internet is working!")
+	fmt.Print(time.Now())
+	fmt.Println(" - Your internet is working!")
 	return true
 }
 

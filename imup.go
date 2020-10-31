@@ -9,6 +9,10 @@ import (
 	"github.com/imroc/req"
 )
 
+func getFormattedTime() string {
+	return time.Now().Format(time.ANSIC)
+}
+
 func getRandomSecond() int {
 	rand.Seed(time.Now().UnixNano())
 	min := 10
@@ -36,17 +40,18 @@ func fetchPage(name string) bool {
 	_, err := req.Get(name)
 
 	if err != nil {
-		fmt.Print(time.Now())
+		fmt.Print(getFormattedTime())
 		fmt.Println(" - Reached timeout or error. Your internet is probably down!")
 		return false
 	}
 
-	fmt.Print(time.Now())
+	fmt.Print(getFormattedTime())
 	fmt.Println(" - Your internet is working!")
 	return true
 }
 
 func main() {
+	fmt.Println(getFormattedTime())
 	var args struct {
 		Repeat bool `arg:"-r, --repeat" default:"false" help:"Keep checking periodically."`
 	}

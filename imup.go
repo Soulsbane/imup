@@ -54,14 +54,15 @@ func fetchPage(name string) bool {
 func main() {
 	fmt.Println(getFormattedTime())
 	var args struct {
-		Repeat bool `arg:"-r, --repeat" default:"false" help:"Keep checking periodically."`
+		Repeat bool   `arg:"-r, --repeat" default:"false" help:"Keep checking periodically."`
+		URL    string `arg:"-u, --url" default:"https://www.google.com/" help:"The website to fetch."`
 	}
 
 	arg.MustParse(&args)
 
 	if args.Repeat {
-		keepFetchingPage("http://google.com/")
+		keepFetchingPage(args.URL)
 	} else {
-		fetchPage("http://google.com/")
+		fetchPage(args.URL)
 	}
 }

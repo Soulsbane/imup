@@ -2,24 +2,11 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"time"
 
 	"github.com/alexflint/go-arg"
 	"github.com/imroc/req"
 )
-
-func getFormattedTime() string {
-	return time.Now().Format(time.ANSIC)
-}
-
-func getRandomSecond() int {
-	rand.Seed(time.Now().UnixNano())
-	min := 10
-	max := 60
-
-	return rand.Intn(max-min+1) + min
-}
 
 func keepFetchingPage(name string) {
 	for {

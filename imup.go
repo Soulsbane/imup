@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/Soulsbane/imup/utils"
 	"github.com/alexflint/go-arg"
 	"github.com/imroc/req"
 )
@@ -13,7 +14,7 @@ func keepFetchingPage(name string) {
 		working := fetchPage(name)
 
 		if working {
-			second := getRandomSecond()
+			second := utils.GetRandomSecond()
 			time.Sleep(time.Duration(second) * time.Second)
 		} else {
 			time.Sleep(3 * time.Second)
@@ -26,13 +27,13 @@ func fetchPage(name string) bool {
 	_, err := req.Get(name)
 
 	if err != nil {
-		fmt.Print(getFormattedTime())
+		fmt.Print(utils.GetFormattedTime())
 		fmt.Println(" - Reached timeout or error. Your internet is probably down!")
 
 		return false
 	}
 
-	fmt.Print(getFormattedTime())
+	fmt.Print(utils.GetFormattedTime())
 	fmt.Println(" - Your internet is working!")
 
 	return true

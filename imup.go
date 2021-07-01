@@ -9,6 +9,8 @@ import (
 	"github.com/imroc/req"
 )
 
+// TODO: Add running tally of total timeout and up time
+
 func keepFetchingPage(name string) {
 	for {
 		working := fetchPage(name)
@@ -25,16 +27,15 @@ func keepFetchingPage(name string) {
 func fetchPage(name string) bool {
 	req.SetTimeout(3 * time.Second)
 	_, err := req.Get(name)
+	formattedTime := utils.GetFormattedTime()
 
 	if err != nil {
-		fmt.Print(utils.GetFormattedTime())
-		fmt.Println(" - Reached timeout or error. Your internet is probably down!")
+		fmt.Println(formattedTime + " - Reached timeout or error. Your internet is probably down!")
 
 		return false
 	}
 
-	fmt.Print(utils.GetFormattedTime())
-	fmt.Println(" - Your internet is working!")
+	fmt.Println(formattedTime + " - Your internet is working!")
 
 	return true
 }

@@ -15,8 +15,8 @@ func GetFormattedTime() string {
 // GetRandomSecond returns a random number between 10 and 60
 func GetRandomSecond() int {
 	rand.Seed(time.Now().UnixNano())
-	min := 10
-	max := 60
+	min := 1
+	max := 10
 
 	return rand.Intn(max-min+1) + min
 }

@@ -16,14 +16,14 @@ func keepFetchingPage(name string) {
 		if working {
 			second := utils.GetRandomSecond()
 			time.Sleep(time.Duration(second) * time.Second)
-		} else {
-			time.Sleep(3 * time.Second)
-		}
+		} /*else {
+			time.Sleep(1 * time.Second)
+		}*/
 	}
 }
 
 func fetchPage(name string) bool {
-	req.SetTimeout(5 * time.Second)
+	req.SetTimeout(3 * time.Second)
 	_, err := req.Get(name)
 
 	if err != nil {

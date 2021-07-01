@@ -31,12 +31,10 @@ func fetchPage(name string) bool {
 
 	if err != nil {
 		fmt.Println(formattedTime + " - Reached timeout or error. Your internet is probably down!")
-
 		return false
 	}
 
 	fmt.Println(formattedTime + " - Your internet is working!")
-
 	return true
 }
 

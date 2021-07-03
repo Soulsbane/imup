@@ -13,29 +13,21 @@ import (
 
 func keepFetchingPage(name string) {
 	for {
-		working := fetchPage(name)
-
-		if working {
-			second := utils.GetRandomSecond()
-			time.Sleep(time.Duration(second) * time.Second)
-		} /*else {
-			time.Sleep(1 * time.Second)
-		}*/
+		fetchPage(name)
+		time.Sleep(1 * time.Second)
 	}
 }
 
-func fetchPage(name string) bool {
+func fetchPage(name string) {
 	req.SetTimeout(3 * time.Second)
 	_, err := req.Get(name)
 	formattedTime := utils.GetFormattedTime()
 
 	if err != nil {
 		fmt.Println(formattedTime + " - Reached timeout or error. Your internet is probably down!")
-		return false
 	}
 
 	fmt.Println(formattedTime + " - Your internet is working!")
-	return true
 }
 
 func main() {
